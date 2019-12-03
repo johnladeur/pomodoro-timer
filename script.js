@@ -18,6 +18,7 @@
   
   resetButton.addEventListener("click", function() {
     console.log('reset button clicked')
+    startButton.disabled = false;
     min = 25;
     sec = 1;
     
@@ -38,6 +39,7 @@
     if (min == 0 && sec == 0) {
       timer = clearInterval(timer);
       resetButton.disabled = false;
+      startButton.disabled = true;
     }
     displayTime();
   }
