@@ -1,6 +1,9 @@
 (function() {
-  let sec = 4;
-  let min = 0;
+
+  //Work Session Timer
+
+  let sec = 0;
+  let min = 25;
   let startButton = document.getElementById("start-btn");
   let stopButton = document.getElementById("stop-btn");
   let resetButton = document.getElementById("reset-btn");
@@ -50,10 +53,10 @@
     timer.innerHTML = min + ":" + sec;
   }
 
-  //------------------------------------------------------------//
+  //Break Timer
   
-  let secBreak = 5;
-  let minBreak = 0;
+  let secBreak = 0;
+  let minBreak = 5;
   let startButtonBreak = document.getElementById("start-btn-break")
   let stopButtonBreak = document.getElementById("stop-btn-break")
   let resetButtonBreak = document.getElementById("reset-btn-break")
@@ -92,7 +95,6 @@
       breakTimer = clearInterval(breakTimer);
       resetButtonBreak.disabled = false;
       startButtonBreak.disabled = true;
-      alert("Start your next work session!")
     }
     displayTimeBreak();
   }
@@ -104,4 +106,3 @@
 
   
   })();
-  
