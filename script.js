@@ -21,9 +21,9 @@
   resetButton.addEventListener("click", function() {
     console.log("reset button clicked");
     startButton.disabled = false;
+    document.getElementById('time-remaining').innerHTML = "25:00";
     min = 25;
     sec = 1;
-
     resetButton.disabled = true;
   });
 
@@ -72,6 +72,7 @@
   resetButtonBreak.addEventListener("click", function() {
     console.log("reset button clicked");
     startButtonBreak.disabled = false;
+    document.getElementById('time-remaining-break').innerHTML = "5:00";
     minBreak = 5;
     secBreak = 1;
     resetButtonBreak.disabled = true;
