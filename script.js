@@ -10,12 +10,16 @@
   startButton.addEventListener("click", function() {
     timer = setInterval(timerHandler, 1000);
     resetButton.disabled = true;
+    startButtonBreak.disabled = true;
+    stopButtonBreak.disabled = true;
   });
 
   stopButton.addEventListener("click", function() {
     timer = clearInterval(timer);
     console.log("stop button clicked");
     resetButton.disabled = false;
+    startButtonBreak.disabled = false;
+    stopButtonBreak.disabled = false;
   });
 
   resetButton.addEventListener("click", function() {
@@ -61,12 +65,16 @@
   startButtonBreak.addEventListener("click", function() {
     breakTimer = setInterval(timerHandlerBreak, 1000);
     resetButtonBreak.disabled = true;
+    startButton.disabled = true;
+    stopButton.disabled = true;
   });
 
   stopButtonBreak.addEventListener("click", function() {
     breakTimer = clearInterval(breakTimer);
     console.log("stop button clicked");
     resetButtonBreak.disabled = false;
+    startButton.disabled = false;
+    stopButton.disabled = false;
   });
 
   resetButtonBreak.addEventListener("click", function() {
