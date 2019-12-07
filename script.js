@@ -6,6 +6,20 @@
   let startButton = document.getElementById("start-btn");
   let stopButton = document.getElementById("stop-btn");
   let resetButton = document.getElementById("reset-btn");
+  let workModeBtn = document.getElementById('work-mode');
+  let breakModeBtn = document.getElementById('break-mode');
+  let workModeActive = true;
+
+  workModeBtn.addEventListener("click", function(){
+    workModeActive = true;
+    startButtonBreak.disabled = true;
+    stopButtonBreak.disabled = true;
+    resetButtonBreak.disabled = true;
+    document.getElementById("break-header").style.opacity = "0.5";
+    document.getElementById("time-remaining-break").style.opacity = "0.5";
+  })
+
+  
 
   startButton.addEventListener("click", function() {
     timer = setInterval(timerHandler, 1000);
