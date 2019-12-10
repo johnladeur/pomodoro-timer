@@ -56,8 +56,6 @@
     timer = clearInterval(timer);
     console.log("stop button clicked");
     resetButton.disabled = false;
-    startButtonBreak.disabled = false;
-    stopButtonBreak.disabled = false;
   });
 
   resetButton.addEventListener("click", function() {
@@ -111,8 +109,6 @@
     breakTimer = clearInterval(breakTimer);
     console.log("stop button clicked");
     resetButtonBreak.disabled = false;
-    startButton.disabled = false;
-    stopButton.disabled = false;
   });
 
   resetButtonBreak.addEventListener("click", function() {
