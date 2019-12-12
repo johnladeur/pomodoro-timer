@@ -8,11 +8,14 @@
   let resetButton = document.getElementById("reset-btn");
   let workModeBtn = document.getElementById('work-mode');
   let breakModeBtn = document.getElementById('break-mode');
-  let workModeActive = true;
+  let isWorkModeActive = true;
   
+if (isWorkModeActive === true){
+
+}
 
   workModeBtn.addEventListener("click", function(){
-    workModeActive = true;
+    isWorkModeActive = true;
     startButtonBreak.disabled = true;
     stopButtonBreak.disabled = true;
     resetButtonBreak.disabled = true;
@@ -27,7 +30,7 @@
   })
 
   breakModeBtn.addEventListener("click", function(){
-    workModeActive = false;
+    isWorkModeActive = false;
     startButton.disabled = true;
     stopButton.disabled = true;
     resetButton.disabled = true;
