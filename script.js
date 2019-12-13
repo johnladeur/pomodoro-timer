@@ -6,35 +6,41 @@
   let startButton = document.getElementById("start-btn");
   let stopButton = document.getElementById("stop-btn");
   let resetButton = document.getElementById("reset-btn");
-  let workModeBtn = document.getElementById('work-mode');
-  let breakModeBtn = document.getElementById('break-mode');
+  let workModeBtn = document.getElementById("work-mode");
+  let breakModeBtn = document.getElementById("break-mode");
   let isWorkModeActive = true;
-  
-if (isWorkModeActive === true){
 
-}
+  if (isWorkModeActive === true) {
+    setToWorkMode();
+  }
 
-  workModeBtn.addEventListener("click", function(){
-    isWorkModeActive = true;
-    startButtonBreak.disabled = true;
-    stopButtonBreak.disabled = true;
-    resetButtonBreak.disabled = true;
-    document.getElementById("break-header").style.opacity = "0.5";
-    document.getElementById("time-remaining-break").style.opacity = "0.5";
+  workModeBtn.addEventListener("click", function() {
+    setToWorkMode();
+  });
 
-    startButton.disabled = false;
-    stopButton.disabled = false;
-    resetButton.disabled = false;
-    document.getElementById("work-header").style.opacity = "1";
-    document.getElementById("time-remaining").style.opacity = "1";
-  })
+  function setToWorkMode() {
+    workModeBtn.addEventListener("click", function() {
+      isWorkModeActive = true;
+      startButtonBreak.disabled = true;
+      stopButtonBreak.disabled = true;
+      resetButtonBreak.disabled = true;
+      document.getElementById("break-header").style.opacity = "0.5";
+      document.getElementById("time-remaining-break").style.opacity = "0.5";
 
-  breakModeBtn.addEventListener("click", function(){
+      startButton.disabled = false;
+      stopButton.disabled = false;
+      resetButton.disabled = false;
+      document.getElementById("work-header").style.opacity = "1";
+      document.getElementById("time-remaining").style.opacity = "1";
+    });
+  }
+
+  breakModeBtn.addEventListener("click", function() {
     isWorkModeActive = false;
     startButton.disabled = true;
     stopButton.disabled = true;
     resetButton.disabled = true;
-    
+
     document.getElementById("work-header").style.opacity = "0.5";
     document.getElementById("time-remaining").style.opacity = "0.5";
 
@@ -43,16 +49,13 @@ if (isWorkModeActive === true){
     resetButtonBreak.disabled = false;
     document.getElementById("break-header").style.opacity = "1";
     document.getElementById("time-remaining-break").style.opacity = "1";
-  })
-
-  
+  });
 
   startButton.addEventListener("click", function() {
     timer = setInterval(timerHandler, 1000);
     resetButton.disabled = true;
     startButtonBreak.disabled = true;
     stopButtonBreak.disabled = true;
-   
   });
 
   stopButton.addEventListener("click", function() {
@@ -64,7 +67,7 @@ if (isWorkModeActive === true){
   resetButton.addEventListener("click", function() {
     console.log("reset button clicked");
     startButton.disabled = false;
-    document.getElementById('time-remaining').innerHTML = "25:00";
+    document.getElementById("time-remaining").innerHTML = "25:00";
     min = 25;
     sec = 1;
     resetButton.disabled = true;
@@ -117,7 +120,7 @@ if (isWorkModeActive === true){
   resetButtonBreak.addEventListener("click", function() {
     console.log("reset button clicked");
     startButtonBreak.disabled = false;
-    document.getElementById('time-remaining-break').innerHTML = "5:00";
+    document.getElementById("time-remaining-break").innerHTML = "5:00";
     minBreak = 5;
     secBreak = 1;
     resetButtonBreak.disabled = true;
