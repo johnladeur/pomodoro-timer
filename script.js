@@ -10,32 +10,43 @@
   let breakModeBtn = document.getElementById("break-mode");
   let isWorkModeActive = true;
 
+  let secBreak = 0;
+  let minBreak = 5;
+  let startButtonBreak = document.getElementById("start-btn-break");
+  let stopButtonBreak = document.getElementById("stop-btn-break");
+  let resetButtonBreak = document.getElementById("reset-btn-break");
+
   if (isWorkModeActive === true) {
     setToWorkMode();
+  } else {
+    setToBreakMode();
   }
 
   workModeBtn.addEventListener("click", function() {
     setToWorkMode();
   });
 
-  function setToWorkMode() {
-    workModeBtn.addEventListener("click", function() {
-      isWorkModeActive = true;
-      startButtonBreak.disabled = true;
-      stopButtonBreak.disabled = true;
-      resetButtonBreak.disabled = true;
-      document.getElementById("break-header").style.opacity = "0.5";
-      document.getElementById("time-remaining-break").style.opacity = "0.5";
+  breakModeBtn.addEventListener("click", function() {
+    setToBreakMode();
+  });
 
-      startButton.disabled = false;
-      stopButton.disabled = false;
-      resetButton.disabled = false;
-      document.getElementById("work-header").style.opacity = "1";
-      document.getElementById("time-remaining").style.opacity = "1";
-    });
+  function setToWorkMode() {
+    console.log("click event!");
+    isWorkModeActive = true;
+    startButtonBreak.disabled = true;
+    stopButtonBreak.disabled = true;
+    resetButtonBreak.disabled = true;
+    document.getElementById("break-header").style.opacity = "0.5";
+    document.getElementById("time-remaining-break").style.opacity = "0.5";
+
+    startButton.disabled = false;
+    stopButton.disabled = false;
+    resetButton.disabled = false;
+    document.getElementById("work-header").style.opacity = "1";
+    document.getElementById("time-remaining").style.opacity = "1";
   }
 
-  breakModeBtn.addEventListener("click", function() {
+  function setToBreakMode() {
     isWorkModeActive = false;
     startButton.disabled = true;
     stopButton.disabled = true;
@@ -49,7 +60,7 @@
     resetButtonBreak.disabled = false;
     document.getElementById("break-header").style.opacity = "1";
     document.getElementById("time-remaining-break").style.opacity = "1";
-  });
+  }
 
   startButton.addEventListener("click", function() {
     timer = setInterval(timerHandler, 1000);
@@ -97,12 +108,6 @@
   }
 
   //Break Timer
-
-  let secBreak = 0;
-  let minBreak = 5;
-  let startButtonBreak = document.getElementById("start-btn-break");
-  let stopButtonBreak = document.getElementById("stop-btn-break");
-  let resetButtonBreak = document.getElementById("reset-btn-break");
 
   startButtonBreak.addEventListener("click", function() {
     breakTimer = setInterval(timerHandlerBreak, 1000);
