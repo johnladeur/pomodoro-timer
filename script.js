@@ -71,6 +71,7 @@
     stopButtonBreak.disabled = true;
     workModeBtn.disabled = true;
     breakModeBtn.disabled = true;
+    startButton.disabled = true;
 
   });
 
@@ -80,6 +81,7 @@
     resetButton.disabled = false;
     workModeBtn.disabled = false;
     breakModeBtn.disabled = false;
+    startButton.disabled = false;
   });
 
   resetButton.addEventListener("click", function() {
@@ -124,6 +126,7 @@
     stopButton.disabled = true;
     workModeBtn.disabled = true;
     breakModeBtn.disabled = true;
+    startButtonBreak.disabled = true;
   });
 
   stopButtonBreak.addEventListener("click", function() {
@@ -132,6 +135,7 @@
     resetButtonBreak.disabled = false;
     workModeBtn.disabled = false;
     breakModeBtn.disabled = false;
+    startButtonBreak.disabled = false;
   });
 
   resetButtonBreak.addEventListener("click", function() {
