@@ -16,7 +16,7 @@
   let stopButtonBreak = document.getElementById("stop-btn-break");
   let resetButtonBreak = document.getElementById("reset-btn-break");
   const audio = new Audio("sound.wav");
-  
+
   if (isWorkModeActive) {
     setToWorkMode();
   } else {
@@ -25,7 +25,6 @@
 
   workModeBtn.addEventListener("click", function() {
     setToWorkMode();
-   
   });
 
   breakModeBtn.addEventListener("click", function() {
@@ -72,7 +71,6 @@
     workModeBtn.disabled = true;
     breakModeBtn.disabled = true;
     startButton.disabled = true;
-
   });
 
   stopButton.addEventListener("click", function() {
