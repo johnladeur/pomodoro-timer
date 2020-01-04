@@ -1,21 +1,26 @@
 (function() {
   //Work Session Timer
-
-  let sec = 0;
-  let min = 25;
-  let startButton = document.getElementById("start-btn");
-  let stopButton = document.getElementById("stop-btn");
-  let resetButton = document.getElementById("reset-btn");
-  let workModeBtn = document.getElementById("work-mode");
-  let breakModeBtn = document.getElementById("break-mode");
-  let isWorkModeActive = true;
-
-  let secBreak = 0;
-  let minBreak = 5;
-  let startButtonBreak = document.getElementById("start-btn-break");
-  let stopButtonBreak = document.getElementById("stop-btn-break");
-  let resetButtonBreak = document.getElementById("reset-btn-break");
   const audio = new Audio("sound.wav");
+  const WORK_SECONDS = 45 * 60;
+  const BREAK_SECONDS = 15 * 60;
+
+  let isWorkModeActive = true;
+  let workTotalSeconds = WORK_SECONDS;
+  let breakTotalSeconds = BREAK_SECONDS;
+  let breakSeconds = 0;
+  let breakMinutes = 5;
+
+  let workRadioButton = document.getElementById("work-mode");
+  let breakRadioButton = document.getElementById("break-mode");
+
+  let workStartButton = document.getElementById("start-btn");
+  let workStopButton = document.getElementById("stop-btn");
+  let workResetButton = document.getElementById("reset-btn");
+ 
+  let breakStartButton = document.getElementById("start-btn-break");
+  let breakStopButton = document.getElementById("stop-btn-break");
+  let breakResetButton = document.getElementById("reset-btn-break");
+  
 
   if (isWorkModeActive) {
     setToWorkMode();
@@ -23,149 +28,145 @@
     setToBreakMode();
   }
 
-  workModeBtn.addEventListener("click", function() {
+  workRadioButton.addEventListener("click", function() {
     setToWorkMode();
   });
 
-  breakModeBtn.addEventListener("click", function() {
+  breakRadioButton.addEventListener("click", function() {
     setToBreakMode();
   });
 
   function setToWorkMode() {
     console.log("click event!");
     isWorkModeActive = true;
-    startButtonBreak.disabled = true;
-    stopButtonBreak.disabled = true;
-    resetButtonBreak.disabled = true;
+    breakStartButton.disabled = true;
+    breakStopButton.disabled = true;
+    breakResetButton.disabled = true;
     document.getElementById("break-header").style.opacity = "0.5";
     document.getElementById("time-remaining-break").style.opacity = "0.5";
 
-    startButton.disabled = false;
-    stopButton.disabled = false;
-    resetButton.disabled = false;
+    workStartButton.disabled = false;
+    workStopButton.disabled = false;
+    workResetButton.disabled = false;
     document.getElementById("work-header").style.opacity = "1";
     document.getElementById("time-remaining").style.opacity = "1";
   }
 
   function setToBreakMode() {
     isWorkModeActive = false;
-    startButton.disabled = true;
-    stopButton.disabled = true;
-    resetButton.disabled = true;
+    workStartButton.disabled = true;
+    workStopButton.disabled = true;
+    workResetButton.disabled = true;
 
     document.getElementById("work-header").style.opacity = "0.5";
     document.getElementById("time-remaining").style.opacity = "0.5";
 
-    startButtonBreak.disabled = false;
-    stopButtonBreak.disabled = false;
-    resetButtonBreak.disabled = false;
+    breakStartButton.disabled = false;
+    breakStopButton.disabled = false;
+    breakResetButton.disabled = false;
     document.getElementById("break-header").style.opacity = "1";
     document.getElementById("time-remaining-break").style.opacity = "1";
   }
 
-  startButton.addEventListener("click", function() {
-    timer = setInterval(timerHandler, 1000);
-    resetButton.disabled = true;
-    startButtonBreak.disabled = true;
-    stopButtonBreak.disabled = true;
-    workModeBtn.disabled = true;
-    breakModeBtn.disabled = true;
-    startButton.disabled = true;
+  workStartButton.addEventListener("click", function() {
+    timer = setInterval(workTimerHandler, 1000);
+    workResetButton.disabled = true;
+    breakStartButton.disabled = true;
+    breakStopButton.disabled = true;
+    workRadioButton.disabled = true;
+    breakRadioButton.disabled = true;
+    workStartButton.disabled = true;
   });
 
-  stopButton.addEventListener("click", function() {
+  workStopButton.addEventListener("click", function() {
     timer = clearInterval(timer);
     console.log("stop button clicked");
-    resetButton.disabled = false;
-    workModeBtn.disabled = false;
-    breakModeBtn.disabled = false;
-    startButton.disabled = false;
+    workResetButton.disabled = false;
+    workRadioButton.disabled = false;
+    breakRadioButton.disabled = false;
+    workStartButton.disabled = false;
   });
 
-  resetButton.addEventListener("click", function() {
+  workResetButton.addEventListener("click", function() {
     console.log("reset button clicked");
-    startButton.disabled = false;
-    document.getElementById("time-remaining").innerHTML = "25:00";
-    min = 25;
-    sec = 1;
-    resetButton.disabled = true;
+    workStartButton.disabled = false;
+    workTotalSeconds = WORK_SECONDS;
+    displayWorkTime(workTotalSeconds)
+    workResetButton.disabled = true;
   });
 
-  function timerHandler() {
-    if (sec >= 1) {
-      sec--;
-    } else {
-      sec = 59;
-      min--;
-    }
-    if (sec < 10) {
-      sec = "0" + sec;
-    }
-    if (min == 0 && sec == 0) {
+  function workTimerHandler() {
+    workTotalSeconds -= 1;
+    if (workTotalSeconds == 0) {
       timer = clearInterval(timer);
-      resetButton.disabled = false;
-      startButton.disabled = true;
+      workResetButton.disabled = false;
+      workStartButton.disabled = true;
       audio.play();
     }
-    displayTime();
+    displayWorkTime(workTotalSeconds);
   }
 
-  function displayTime() {
+  function displayWorkTime(totalSeconds) {
+    let workMinutes = Math.floor(totalSeconds / 60)
+    let workSeconds = totalSeconds % 60;
+    if (workSeconds < 10) {
+      workSeconds = "0" + workSeconds;
+    }
     let timer = document.getElementById("time-remaining");
-    timer.innerHTML = min + ":" + sec;
+    timer.innerHTML = workMinutes + ":" + workSeconds;
   }
 
   //Break Timer
 
-  startButtonBreak.addEventListener("click", function() {
-    breakTimer = setInterval(timerHandlerBreak, 1000);
-    resetButtonBreak.disabled = true;
-    startButton.disabled = true;
-    stopButton.disabled = true;
-    workModeBtn.disabled = true;
-    breakModeBtn.disabled = true;
-    startButtonBreak.disabled = true;
+  breakStartButton.addEventListener("click", function() {
+    breakTimer = setInterval(breakTimerHandler, 1000);
+    breakResetButton.disabled = true;
+    workStartButton.disabled = true;
+    workStopButton.disabled = true;
+    workRadioButton.disabled = true;
+    breakRadioButton.disabled = true;
+    breakStartButton.disabled = true;
   });
 
-  stopButtonBreak.addEventListener("click", function() {
+  breakStopButton.addEventListener("click", function() {
     breakTimer = clearInterval(breakTimer);
     console.log("stop button clicked");
-    resetButtonBreak.disabled = false;
-    workModeBtn.disabled = false;
-    breakModeBtn.disabled = false;
-    startButtonBreak.disabled = false;
+    breakResetButton.disabled = false;
+    workRadioButton.disabled = false;
+    breakRadioButton.disabled = false;
+    breakStartButton.disabled = false;
   });
 
-  resetButtonBreak.addEventListener("click", function() {
+  breakResetButton.addEventListener("click", function() {
     console.log("reset button clicked");
-    startButtonBreak.disabled = false;
+    breakStartButton.disabled = false;
     document.getElementById("time-remaining-break").innerHTML = "5:00";
-    minBreak = 5;
-    secBreak = 1;
-    resetButtonBreak.disabled = true;
+    breakTotalSeconds = BREAK_SECONDS;
+    displayBreakTime(breakTotalSeconds);
+    breakResetButton.disabled = true;
   });
 
-  function timerHandlerBreak() {
-    if (secBreak >= 1) {
-      secBreak--;
-    } else {
-      secBreak = 59;
-      minBreak--;
-    }
-    if (secBreak < 10) {
-      secBreak = "0" + secBreak;
-    }
-    if (minBreak == 0 && secBreak == 0) {
+  function breakTimerHandler() {
+    breakTotalSeconds -= 1;
+    if (breakMinutes == 0 && breakSeconds == 0) {
       breakTimer = clearInterval(breakTimer);
-      resetButtonBreak.disabled = false;
-      startButtonBreak.disabled = true;
+      breakResetButton.disabled = false;
+      breakStartButton.disabled = true;
       audio.play();
     }
-    displayTimeBreak();
+    displayBreakTime(breakTotalSeconds);
   }
 
-  function displayTimeBreak() {
+  function displayBreakTime(totalSeconds) {
+    let breakMinutes = Math.floor(totalSeconds / 60);
+    let breakSeconds = totalSeconds % 60;
+    if (breakSeconds < 10) {
+      breakSeconds = "0" + breakSeconds;
+    }
     let breakTimer = document.getElementById("time-remaining-break");
-    breakTimer.innerHTML = minBreak + ":" + secBreak;
+    breakTimer.innerHTML = breakMinutes + ":" + breakSeconds;
   }
+
+  displayWorkTime(workTotalSeconds);
+  displayBreakTime(breakTotalSeconds);
 })();
