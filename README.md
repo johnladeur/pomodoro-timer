@@ -10,4 +10,6 @@ Follow this link to view: https://johnladeur.github.io/pomodoro-timer/
 
 ## Contributors
 
-John LaDeur <jdladeur@gmail.com>
+John LaDeur - Software Developer
+
+<jdladeur@gmail.com>
