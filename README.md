@@ -12,5 +12,5 @@ Follow this link to view: https://johnladeur.github.io/pomodoro-timer/
 
 John LaDeur - Software Developer
 
-Email: <jdladeur@gmail.com> 
+Email: <jdladeur@gmail.com>  
 LinkedIn: https://www.linkedin.com/in/john-ladeur-92833a54/
