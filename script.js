@@ -1,8 +1,8 @@
 (function() {
   //Work Session Timer
   const audio = new Audio("sound.wav");
-  const WORK_SECONDS = 25 * 60;
-  const BREAK_SECONDS = 5 * 60;
+  const WORK_SECONDS = 45 * 60;
+  const BREAK_SECONDS = 15 * 60;
 
   let isWorkModeActive = true;
   let workTotalSeconds = WORK_SECONDS;
